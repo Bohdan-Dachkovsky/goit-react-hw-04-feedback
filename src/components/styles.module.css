@@ -1,0 +1,36 @@
+.rate {
+    width: auto;
+    height: auto;
+    border: 2px dashed;
+    background-color: rgb(216, 210, 200);
+}
+.headering {
+    font-family: Oxygen, sans-serif; 
+    font-weight: bold; 
+    font-size: medium;
+    font-style: normal;
+    letter-spacing: 0.2em;
+    line-height: 2em;
+}
+.title {
+    font-family: Oxygen, sans-serif; 
+    font-weight: normal; 
+    font-size: medium;
+    font-style: normal;
+    letter-spacing: 0.2em;
+    line-height: 2em;  
+}
+.list {
+    width: 100vw;
+    display: flex;
+}
+.text {
+  display: flex;
+  flex-direction: column;
+  font-family: Oxygen, sans-serif; 
+  font-weight: normal; 
+  font-size: normal;
+  font-style: normal;
+  letter-spacing: 0.2em;
+  line-height: 2em;
+}
