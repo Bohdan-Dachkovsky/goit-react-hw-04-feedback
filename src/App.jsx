@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import Statistics from './components/Statistics.jsx';
 import FeedbackOptions from './components/FeedbackOptions.jsx';
 import Section from './components/Section.jsx';
@@ -6,46 +6,44 @@ import Notification from './components/Notification.jsx';
 import SuccessFeedback from './components/SuccessFeedback.jsx';
 
 const App = () => {
-  // state = {
-  //   good: 0,
-  //   neutral: 0,
-  //   bad: 0,
-  // };
+  const [state, setState] = useState({
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  });
 
   const countTotalFeedback = () => {
-    const { good, neutral, bad } = this.state;
-    const result = good + neutral + bad;
+    const { bad, good, neutral } = state;
+    const result = bad + neutral + good;
     return result;
   };
 
   const countPositiveFeedbackPercentage = () => {
-    const result = this.countTotalFeedback();
-    const { good } = this.state;
+    const result = countTotalFeedback();
+    const { good } = state;
     const percentage = (good * 100) / result;
     return Math.round(percentage);
   };
 
-  // const  onLeaveFeedback = e => {
-  //     const name = e.target.name;
-  //     console.log(name);
-  //     this.setState(prevState => ({
-  //       [name]: prevState[name] + 1,
-  //     }));
-  //   };
+  const onLeaveFeedback = e => {
+    const name = e.target.name;
+    setState(prevState => ({
+      ...state,
+      [name]: prevState[name] + 1,
+    }));
+  };
 
-  const { good, neutral, bad } = this.state;
+  const { good, neutral, bad } = state;
   const total = countTotalFeedback();
   const percentage = countPositiveFeedbackPercentage();
   const positivePercentage = countPositiveFeedbackPercentage();
 
-  const objKey = Object.keys(this.state);
+  const objKey = Object.keys(state);
+  console.log(objKey);
   return (
     <>
       <Section title="Please leave feedback">
-        <FeedbackOptions
-          options={objKey}
-          onLeaveFeedback={this.onLeaveFeedback}
-        />
+        <FeedbackOptions options={objKey} onLeaveFeedback={onLeaveFeedback} />
       </Section>
       {total > 0 ? <SuccessFeedback SuccessResult={percentage} /> : null}
       {total === 0 ? (
